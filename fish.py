@@ -24,7 +24,7 @@ countfish = 0
 
 #rüstung kaputt
 def armorred():
-    print ("rüstung")
+    print ("armor check")
     
     
     if pyautogui.locateOnScreen('redarmor4.png', confidence=0.9, region=(1400, 60, 196, 105)) is not None or pyautogui.locateOnScreen('grayfisch.png', confidence=0.93, region=(770, 971, 67, 63)) is not None:
