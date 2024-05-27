@@ -24,24 +24,25 @@ countfish = 0
 
 #rüstung kaputt
 def armorred():
-    print ("armor check")
+    print ("rüstung")
     
     
-    if pyautogui.locateOnScreen('redarmor4.png', confidence=0.9, region=(1400, 60, 196, 105)) is not None or pyautogui.locateOnScreen('grayfisch.png', confidence=0.93, region=(770, 971, 67, 63)) is not None:
+    if pyautogui.locateOnScreen('redarmor4.png', confidence=0.9, region=(1400, 60, 196, 105)) is not None or pyautogui.locateOnScreen('graufisch.png', confidence=0.93, region=(770, 971, 67, 63)) is not None:
             
-        print("armor broken")
+        print("rüstung kaputt")
         time.sleep(random.uniform(2, 4))
         pyautogui.keyDown('7')
         time.sleep( random.uniform( 0.05, 0.1 ))
         pyautogui.keyUp('7')
         time.sleep( random.uniform(1.0, 1.5)) 
-        print("failure", abbruchcount)
-        print("fish", countfish)
-        print("net", countnetz)
+        print("nicht gehabt", abbruchcount)
+        print("fischfang", countfish)
+        print("fisch netz", countnetz)
+        print("wie lange laeufts", td_mins)
         exit()
         
 
-
+# youtube MIT und nlogspace
 
 
 
@@ -56,7 +57,14 @@ if __name__ == "__main__":
     fmt = '%Y-%m-%d %H:%M:%S'
     dt = datetime.now().isoformat(' ', 'seconds')
     
-
+    
+    # erster köderwurf
+    # print(strftime("%H:%M:%S", gmtime()), "köder wurf")
+    tstamp1 = datetime.strptime(dt, fmt)
+    # pyautogui.keyDown('s')
+    # time.sleep( random.uniform( 0.05, 0.1 ))
+    # pyautogui.keyUp('s')
+    # time.sleep( random.uniform( 2.5, 3 ))
     
     while keyboard.is_pressed('q') == False:
 
@@ -65,26 +73,54 @@ if __name__ == "__main__":
         armorred()
         
         
-       
+        # zeitdingens
+        dt2 = datetime.now().isoformat(' ', 'seconds')
+        tstamp2 = datetime.strptime(dt2, fmt)
+        td = tstamp2 - tstamp1
+        td_mins = int(round(td.total_seconds() / 60))
+        
+        # köder auf nicht da nach 2mins
+        # if td_mins >= 2 :
+            # print("warum hier: ",td_mins )
+            # schwimmer = False
+	
+        # nach 15min neuen köder werfen
+        # if td_mins > 15 and flag == False:
+            # dt = datetime.now().isoformat(' ', 'seconds')
+            # tstamp1 = datetime.strptime(dt, fmt)
+            # pyautogui.keyDown('s')
+            # time.sleep( random.uniform( 0.05, 0.1 ))
+            # pyautogui.keyUp('s')
+            # time.sleep( random.uniform(1.0, 1.5)) 
+            # print("köderwurf")
+            # schwimmer = True
+                # schwimmer = "aktiv"
+            # time.sleep( random.uniform(7.5, 8.5)) 
+           
+        # else:
+
+            # print('The difference is approx. %s minutes' % td_mins)
 
         
 
 
         
         # netzwurf wenn fähigkeit da
-        netzf = pyautogui.locateOnScreen('net.png', confidence=0.8, region=(833, 1006, 76,69))
-
+        netzf = pyautogui.locateOnScreen('netzfaehigkeitr.png', confidence=0.8, region=(833, 1006, 76,69))
+        # if pyautogui.locateOnScreen('netzfaehigkeitr.png', confidence=0.9, region=(833, 1006, 76,69)) is not None and flag == "pulled" and schwimmer == "nichtaktiv" and netzwurf == "nichtaktiv":
+        # if pyautogui.locateOnScreen('netzfaehigkeitr.png', confidence=0.9, region=(833, 1006, 76,69)) is not None and flag == False and schwimmer == False and netzwurf == False:
+        #if netzf is not None and flag == False and schwimmer == False and netzwurf == False:
         
         # schwimmer rausgenommen
         if netzf is not None and flag == False  and netzwurf == False:
-            print("net throw")
+            print("netz werfen")
             netzwurf = True
             pyautogui.keyDown('f')
             time.sleep( random.uniform( 0.05, 0.1 ))
             pyautogui.keyUp('f')
         else:
-            
-            print ("net", netzwurf)
+            # print ("schwimmer ", schwimmer, "netzwurf", netzwurf)
+            print ("netzwurf", netzwurf)
 
         
         if (netzwurf == True):
@@ -96,12 +132,12 @@ if __name__ == "__main__":
             
             # warten bis oranger balken zusehen ist
             while True:
-                balken1 = pyautogui.locateOnScreen('orange.png', confidence=0.99, region=(491, 109, 33, 451))
+                balken1 = pyautogui.locateOnScreen('balkenorange.png', confidence=0.99, region=(491, 109, 33, 451))
                
                 if balken1:# is not None:
                     
                     xb, yb, cb, zb = balken1
-                    print("see orange bar", balken1)
+                    print("sehe orange balken", balken1)
                     break
                     
                 count += 1
@@ -113,7 +149,7 @@ if __name__ == "__main__":
             # pfeil verfolgen und lertaste drücken wenn er im orangen bereich ist
             while True:
         
-                pfeil = pyautogui.locateOnScreen('arrow.png', confidence=0.5, region=(515, 140, 37, 377))
+                pfeil = pyautogui.locateOnScreen('pfeil.png', confidence=0.5, region=(515, 140, 37, 377))
                 if pfeil is not None:
                     yp1= yp
                     xp, yp = pyautogui.center(pfeil)
@@ -121,26 +157,44 @@ if __name__ == "__main__":
                         count+=1
                     else:
                         count=0
-                    print("see arrow", xp,yp)
+                    print("sehe pfeil", xp,yp)
                             
                 else:
-                    print("dont see arrow")
+                    print("sehe kein pfeil")
                     yp = 0
             
 
                 if yb+range < yp and count < 1:
                 
-                    print("spacebar")
-
+                    print("leertaste")
+                    #zulangsam
+                    # pyautogui.keyDown('space')
+                    # time.sleep( random.uniform( 0.01, 0.05 )) # vorher (0.05, 0.1)
+                    # pyautogui.keyUp('space')
             
                     pyautogui.press('space')
 
         
                 # abbruch, wenn kein balken zusehen ist oder taste "L" gedrück ist
-                balkenn = pyautogui.locateOnScreen('orange.png', confidence=0.9, region=(491, 109, 33, 451))
+                balkenn = pyautogui.locateOnScreen('balkenorange.png', confidence=0.9, region=(491, 109, 33, 451))
                 if balkenn is None:
-                    print("end net")
+                    print("beende netz")
+
                     countnetz += 1
+                    print("nicht gehabt", abbruchcount)
+                    print("fischfang", countfish)
+                    print("fisch netz", countnetz)
+                    print("wie lange laeufts", td_mins)
+                    #after 19min and finished net, it stopped
+                    if td_mins >= 19 :
+                        print("fertig. min:", td_mins)
+                        time.sleep(random.uniform(12, 18))
+                        pyautogui.keyDown('7')
+                        time.sleep( random.uniform( 0.05, 0.1 ))
+                        pyautogui.keyUp('7')
+                        time.sleep( random.uniform(1.0, 1.5)) 
+                        exit()
+                        
                     
 
                     time.sleep(random.uniform(6, 8))
@@ -173,7 +227,7 @@ if __name__ == "__main__":
             timeout_start = time.time()
             flag = True
             checker=0
-            time.sleep( random.uniform(4.5, 6.5))        
+            time.sleep( random.uniform(2.5, 4.5))        
          
 
         while(flag == True):
@@ -186,9 +240,9 @@ if __name__ == "__main__":
                 checker += 1
 
             
-            print("fishing")
+            print("angeln")
             ausrufe = pyautogui.locateOnScreen('template4.png', confidence=0.8, region=(943, 455, 40, 70))
-            keinfisch = pyautogui.locateOnScreen('fischactiv.png', confidence=0.8, region=(764, 964, 82, 75))
+            keinfisch = pyautogui.locateOnScreen('fischaktiv.png', confidence=0.8, region=(764, 964, 82, 75))
             
                
             if ausrufe is not None:
@@ -196,7 +250,7 @@ if __name__ == "__main__":
             #if pyautogui.locateOnScreen('template2.png', confidence=0.7, region=(943, 455, 40, 70)) !=None:
                 countfish += 1
                 print(strftime("%H:%M:%S", gmtime()), "Time to fish!")
-                time.sleep(random.uniform(0.2, 0.8))
+                time.sleep(random.uniform(0.2, 0.6))
                 pyautogui.keyDown('e')
                 time.sleep( random.uniform( 0.05, 0.1 ))
                 pyautogui.keyUp('e')
@@ -209,7 +263,7 @@ if __name__ == "__main__":
 
                
             elif keinfisch is  None:
-                print ("break")
+                print ("abbruch")
                 abbruchcount += 1
                 time.sleep(random.uniform(0.2, 1.0))
                 pyautogui.keyDown('e')
@@ -217,7 +271,14 @@ if __name__ == "__main__":
                 pyautogui.keyUp('e')
                 flag = False
                 time.sleep(random.uniform(6.0, 7.5))
-
+            # elif (time.time()>(timeout_start+timeout)):
+                # print ("abbruch")
+                # time.sleep(random.uniform(0.2, 1.0))
+                # pyautogui.keyDown('e')
+                # time.sleep( random.uniform( 0.05, 0.1 ))
+                # pyautogui.keyUp('e')
+                # flag = False
+                # time.sleep(random.uniform(6.0, 7.5))
             
 
         
