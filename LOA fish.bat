@@ -1,3 +1,3 @@
 @echo off
-python D:\loa\fish\fish_git\fishloa\fish.py
+python pathname\fish.py
 pause
