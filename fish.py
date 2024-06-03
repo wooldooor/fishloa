@@ -51,7 +51,9 @@ if __name__ == "__main__":
     
 
     print(strftime("%H:%M:%S", gmtime()), "starting a bot")
-    time.sleep(5)
+    print("wait 10sec")
+    time.sleep(10)
+    
 
     #Zeitunterschied dingens
     fmt = '%Y-%m-%d %H:%M:%S'
