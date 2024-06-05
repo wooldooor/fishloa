@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
         
         # netzwurf wenn fähigkeit da
-        netzf = pyautogui.locateOnScreen('netzfaehigkeitr.png', confidence=0.85, region=(833, 1006, 76,69))
+        netzf = pyautogui.locateOnScreen('netzfaehigkeitr.png', confidence=0.75, region=(833, 1006, 76,69))
         
         # schwimmer rausgenommen
         if netzf is not None and flag == False  and netzwurf == False:
