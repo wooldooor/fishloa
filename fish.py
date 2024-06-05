@@ -12,7 +12,6 @@ import win32gui
     
 #tags    
 flag = False
-# schwimmer = True
 netzwurf = False
 balken1 = None
 abbruchcount = 0
@@ -42,8 +41,6 @@ def armorred():
         exit()
         
 
-# youtube MIT und nlogspace
-
 
 
 if __name__ == "__main__":
@@ -58,15 +55,8 @@ if __name__ == "__main__":
     #Zeitunterschied dingens
     fmt = '%Y-%m-%d %H:%M:%S'
     dt = datetime.now().isoformat(' ', 'seconds')
-    
-    
-    # erster köderwurf
-    # print(strftime("%H:%M:%S", gmtime()), "köder wurf")
     tstamp1 = datetime.strptime(dt, fmt)
-    # pyautogui.keyDown('s')
-    # time.sleep( random.uniform( 0.05, 0.1 ))
-    # pyautogui.keyUp('s')
-    # time.sleep( random.uniform( 2.5, 3 ))
+
     
     while keyboard.is_pressed('q') == False:
 
@@ -81,37 +71,10 @@ if __name__ == "__main__":
         td = tstamp2 - tstamp1
         td_mins = int(round(td.total_seconds() / 60))
         
-        # köder auf nicht da nach 2mins
-        # if td_mins >= 2 :
-            # print("warum hier: ",td_mins )
-            # schwimmer = False
-	
-        # nach 15min neuen köder werfen
-        # if td_mins > 15 and flag == False:
-            # dt = datetime.now().isoformat(' ', 'seconds')
-            # tstamp1 = datetime.strptime(dt, fmt)
-            # pyautogui.keyDown('s')
-            # time.sleep( random.uniform( 0.05, 0.1 ))
-            # pyautogui.keyUp('s')
-            # time.sleep( random.uniform(1.0, 1.5)) 
-            # print("köderwurf")
-            # schwimmer = True
-                # schwimmer = "aktiv"
-            # time.sleep( random.uniform(7.5, 8.5)) 
-           
-        # else:
-
-            # print('The difference is approx. %s minutes' % td_mins)
-
-        
-
 
         
         # netzwurf wenn fähigkeit da
-        netzf = pyautogui.locateOnScreen('netzfaehigkeitr.png', confidence=0.8, region=(833, 1006, 76,69))
-        # if pyautogui.locateOnScreen('netzfaehigkeitr.png', confidence=0.9, region=(833, 1006, 76,69)) is not None and flag == "pulled" and schwimmer == "nichtaktiv" and netzwurf == "nichtaktiv":
-        # if pyautogui.locateOnScreen('netzfaehigkeitr.png', confidence=0.9, region=(833, 1006, 76,69)) is not None and flag == False and schwimmer == False and netzwurf == False:
-        #if netzf is not None and flag == False and schwimmer == False and netzwurf == False:
+        netzf = pyautogui.locateOnScreen('netzfaehigkeitr.png', confidence=0.85, region=(833, 1006, 76,69))
         
         # schwimmer rausgenommen
         if netzf is not None and flag == False  and netzwurf == False:
@@ -121,7 +84,6 @@ if __name__ == "__main__":
             time.sleep( random.uniform( 0.05, 0.1 ))
             pyautogui.keyUp('f')
         else:
-            # print ("schwimmer ", schwimmer, "netzwurf", netzwurf)
             print ("netzwurf", netzwurf)
 
         
@@ -234,8 +196,7 @@ if __name__ == "__main__":
 
         while(flag == True):
             
-            #print ("running4")
-            
+      
             if checker < 3:
             #rüstung checker
                 armorred()
@@ -273,17 +234,7 @@ if __name__ == "__main__":
                 pyautogui.keyUp('e')
                 flag = False
                 time.sleep(random.uniform(6.0, 7.5))
-            # elif (time.time()>(timeout_start+timeout)):
-                # print ("abbruch")
-                # time.sleep(random.uniform(0.2, 1.0))
-                # pyautogui.keyDown('e')
-                # time.sleep( random.uniform( 0.05, 0.1 ))
-                # pyautogui.keyUp('e')
-                # flag = False
-                # time.sleep(random.uniform(6.0, 7.5))
-            
 
-        
 
         print(strftime("%H:%M:%S", gmtime()), "Not time yet!")
         
