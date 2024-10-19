@@ -49,7 +49,7 @@ if __name__ == "__main__":
 
     print(strftime("%H:%M:%S", gmtime()), "starting a bot")
     print("wait 10sec")
-    time.sleep(10)
+    time.sleep(3)
     
 
     #Zeitunterschied dingens
@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
         
         # netzwurf wenn fähigkeit da
-        netzf = pyautogui.locateOnScreen('netzfaehigkeitr.png', confidence=0.75, region=(833, 1006, 76,69))
+        netzf = pyautogui.locateOnScreen('netzfaehigkeitr.png', confidence=0.99, region=(833, 1006, 76,69))
         
         # schwimmer rausgenommen
         if netzf is not None and flag == False  and netzwurf == False:
@@ -85,6 +85,7 @@ if __name__ == "__main__":
             pyautogui.keyUp('f')
         else:
             print ("netzwurf", netzwurf)
+            print ("netzwurfddddd", netzwurf)
 
         
         if (netzwurf == True):
@@ -96,9 +97,9 @@ if __name__ == "__main__":
             
             # warten bis oranger balken zusehen ist
             while True:
-                balken1 = pyautogui.locateOnScreen('balkenorange.png', confidence=0.99, region=(491, 109, 33, 451))
+                balken1 = pyautogui.locateOnScreen('balkengelb.png', confidence=0.9, region=(491, 109, 33, 451))
                
-                if balken1:# is not None:
+                if balken1 is not None:
                     
                     xb, yb, cb, zb = balken1
                     print("sehe orange balken", balken1)
@@ -205,7 +206,7 @@ if __name__ == "__main__":
             
             print("angeln")
             ausrufe = pyautogui.locateOnScreen('template4.png', confidence=0.8, region=(943, 455, 40, 70))
-            keinfisch = pyautogui.locateOnScreen('fischaktiv.png', confidence=0.8, region=(764, 964, 82, 75))
+            keinfisch = pyautogui.locateOnScreen('fischaktiv.png', confidence=0.7, region=(764, 964, 82, 75))
             
                
             if ausrufe is not None:
